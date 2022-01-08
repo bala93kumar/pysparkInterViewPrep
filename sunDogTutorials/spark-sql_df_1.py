@@ -19,7 +19,8 @@ print("for each age  what is the avg num of friends")
 
 #not working
 
-data.groupBy("age").agg(F.round(F.avg("numFriends").alias("avg_numfriend"),0)).sort("age").show()
+data_1 = data.groupBy("age").agg(F.round(F.avg("numFriends"),0).alias("avg_numfriend")).sort("age").withColumn("dummy", F.lit("1"))
+data_1.show()
 
 # data.select("age", "numFriends").groupBy("age").avg("numFriends").show()
 
