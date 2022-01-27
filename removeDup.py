@@ -14,17 +14,15 @@ data.show()
 print("grouped count")
 data.groupBy("Name", "Age","Education", "Year").count().where("count > 1").show()
 
-data_1 =  data.groupBy("Name", "Age","Education", "Year").count().where("count > 1")
 
-win = Window.partitionBy("Name").orderBy(F.col("Year").desc())
+data.groupBy("Name", "Age","Education", "Year").agg(F.sum("Age").alias("sumed") ,
+                                                    F.count("Name").alias("counted")).show()
 
-data_2 = data.withColumn("rank", F.row_number().over(win)).filter("rank == 1")
-
-data_2.show()
-print(data.rdd.getNumPartitions())
-
-
-
-
-
-
+# data_1 =  data.groupBy("Name", "Age","Education", "Year").count().where("count > 1")
+#
+# win = Window.partitionBy("Name").orderBy(F.col("Year").desc())
+#
+# data_2 = data.withColumn("rank", F.row_number().over(win)).filter("rank == 1")
+#
+# data_2.show()
+# print(data.rdd.getNumPartitions())
