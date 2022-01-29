@@ -1,3 +1,5 @@
+#SCRAP THIS CODE FOR NOW
+
 from pyspark.sql import SparkSession
 from pyspark.sql import Row
 from pyspark.sql import functions as F
