@@ -1,10 +1,8 @@
 import sys
-
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
 
-from pyspark.sql import  functions as F
-
-from lib.logger import  Log4j
+from lib.logger import Log4j
 
 if __name__ == "__main__":
 
@@ -21,10 +19,7 @@ if __name__ == "__main__":
     # print(survey_df.rdd.getNumPartitions())
 
     #job 2
-
     spark.conf.set("spark.sql.shuffle.partitions",2)
-
-
     partioned = survey_df.repartition(3)
 
     # count_df = partioned.filter(F. col("Age") < 40) \
