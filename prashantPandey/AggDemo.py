@@ -39,8 +39,10 @@ if __name__ == "__main__":
         groupBy("Country","WeekNumber").\
         agg( f.countDistinct("InvoiceNo").alias("NumInvoices") , f.sum("Quantity").alias("TotalQuantity") , InvoiceValue )
 
+    exSummary_df.coalesce(1).write.format("parquet").mode("overwrite").\
+        save("file:///D://CODING//pysparkCodes//output//AggDemoOp")
 
-    exSummary_df.show()
+    # exSummary_df.show()
 
 
 
